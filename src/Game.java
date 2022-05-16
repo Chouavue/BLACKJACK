@@ -31,7 +31,7 @@ public class Game {
                 break;
             }
 
-            boolean endRound =false;
+            boolean gameRound =false;
 
             playerDeck.draw(playingDeck);
             playerDeck.draw(playingDeck);
@@ -65,7 +65,7 @@ public class Game {
                         System.out.println("Your hand value is : " + playerDeck.cardsValue());
                         System.out.println("BUST! Dealer Wins!");
                         playerMoney-=playerBet;
-                        endRound = true;
+                        gameRound = true;
                         break;
                     }
                 }
@@ -75,12 +75,12 @@ public class Game {
             }
             System.out.println("------Dealer's hand-----");
             System.out.println(dealerDeck.toString());
-            if((dealerDeck.cardsValue() > playerDeck.cardsValue()) && endRound == false){
+            if((dealerDeck.cardsValue() > playerDeck.cardsValue()) && gameRound == false){
                 System.out.println("Dealer Won!");
                 playerMoney -= playerBet;
-                endRound = true;
+                gameRound = true;
             }
-            while((dealerDeck.cardsValue() < 21) && endRound == false){
+            while((dealerDeck.cardsValue() < 21) && gameRound == false){
                 dealerDeck.draw(playerDeck);
                 System.out.println("Dealer Draws: " + dealerDeck.getCard(dealerDeck.deckSize()-1).toString());
                 System.out.println("Dealer's hand value: " + dealerDeck.cardsValue());
@@ -88,29 +88,29 @@ public class Game {
                         System.out.println("Dealer got BLACKJACK!");
                     }
             } 
-            if ((dealerDeck.cardsValue() > 21 ) && endRound == false){
+            if ((dealerDeck.cardsValue() > 21 ) && gameRound == false){
                 System.out.println("Dealer BUST. You Win!");
                 playerMoney += playerBet;
-                endRound = true;
+                gameRound = true;
             }
-            if((playerDeck.cardsValue() == dealerDeck.cardsValue()) && endRound == false){
+            if((playerDeck.cardsValue() == dealerDeck.cardsValue()) && gameRound == false){
                 System.out.println("Push! No one wins!");
-                endRound = true;
+                gameRound = true;
             }
-            if((dealerDeck.cardsValue() < playerDeck.cardsValue()) && endRound == false){
+            if((dealerDeck.cardsValue() < playerDeck.cardsValue()) && gameRound == false){
                 System.out.println("You Won!");
                 playerMoney += playerBet;
-                endRound = true;
+                gameRound = true;
             }
-            else if(endRound == false){
+            else if(gameRound == false){
             System.out.println("You lose!");
             playerMoney -= playerBet;
-            endRound = true;
+            gameRound = true;
             }
             playerDeck.moveToDeck(playingDeck);
             dealerDeck.moveToDeck(playingDeck);
     }
-        System.out.println("Game Over! You have no more money." );
+        System.out.println("Game Over! No more money." );
         scan.close();
         playerInput.close();
     }
